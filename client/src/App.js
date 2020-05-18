@@ -6,7 +6,7 @@ const { Title } = Typography;
 function App() {
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
         <Title level={2} >CHATBOT&nbsp;<Icon type="robot" /></Title>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>

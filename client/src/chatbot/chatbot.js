@@ -11,7 +11,8 @@ function Chatbot() {
 
     useEffect(() => {
 
-        eventQuery('welcomeToMyWebsite')
+        eventQuery('001_Welcome')
+        eventQuery('002_Intro')
 
     }, [])
 
@@ -39,7 +40,7 @@ function Chatbot() {
         }
         try {
             if(inputString[0] === '@'){
-                const response = await Axios.post('/api/crawling/textQuery', textQueryVariables)
+                await Axios.post('/api/crawling/textQuery', textQueryVariables)
             } else {
                 //I will send request to the textQuery ROUTE 
                 const response = await Axios.post('/api/dialogflow/textQuery', textQueryVariables)
@@ -47,7 +48,7 @@ function Chatbot() {
                 for (let content of response.data.fulfillmentMessages) {
 
                     conversation = {
-                        who: 'bot',
+                        who: '소통이',
                         content: content
                     }
 
@@ -57,7 +58,7 @@ function Chatbot() {
 
         } catch (error) {
             conversation = {
-                who: 'bot',
+                who: '소통이',
                 content: {
                     text: {
                         text: " Error just occured, please check the problem"
@@ -77,13 +78,16 @@ function Chatbot() {
         const eventQueryVariables = {
             event
         }
+
+
+
         try {
             //I will send request to the textQuery ROUTE 
             const response = await Axios.post('/api/dialogflow/eventQuery', eventQueryVariables)
             for (let content of response.data.fulfillmentMessages) {
 
                 let conversation = {
-                    who: 'bot',
+                    who: '소통이',
                     content: content
                 }
 
@@ -93,7 +97,7 @@ function Chatbot() {
 
         } catch (error) {
             let conversation = {
-                who: 'bot',
+                who: '소통이',
                 content: {
                     text: {
                         text: " Error just occured, please check the problem"
@@ -110,7 +114,7 @@ function Chatbot() {
         if (e.key === "Enter") {
 
             if (!e.target.value) {
-                return alert('you need to type somthing first')
+                return alert('you need to type something first')
             }
 
             //we will send request to text query route 
@@ -136,7 +140,7 @@ function Chatbot() {
             return <Message key={i} who={message.who} text={message.content.text.text} />
         } else if (message.content && message.content.payload.fields.card) {
 
-            const AvatarSrc = message.who === 'bot' ? <Icon type="robot" /> : <Icon type="smile" />
+            const AvatarSrc = message.who === '소통이' ? <Icon type="robot" /> : <Icon type="smile" />
 
             return <div>
                 <List.Item style={{ padding: '1rem' }}>
@@ -175,10 +179,10 @@ function Chatbot() {
 
     return (
         <div style={{
-            height: 500, width: 700,
+            height: 620, width: 700,
             border: '3px solid black', borderRadius: '7px'
         }}>
-            <div style={{ height: 444, width: '100%', overflow: 'auto' }}>
+            <div style={{ height: 564, width: '100%', overflow: 'auto' }}>
 
 
                 {renderMessage(messagesFromRedux)}

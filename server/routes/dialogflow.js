@@ -15,14 +15,9 @@ const languageCode = config.dialogFlowSessionLanguageCode
 const sessionClient = new dialogflow.SessionsClient();
 const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
-// We will make two routes 
-
-
 // Text Query Route
 
 router.post('/textQuery', async (req, res) => {
-    //We need to send some information that comes from the client to Dialogflow API 
-    // The text query request.
     const request = {
         session: sessionPath,
         queryInput: {
