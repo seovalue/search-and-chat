@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, Icon } from 'antd';
-import chatbot from './chatbot/chatbot';
+import Chatbot from './Chatbot/Chatbot';
 const { Title } = Typography;
 
 function App() {
