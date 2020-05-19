@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const uuid = require('uuid'); //uuid 제대로 이해하고 다시 작성하기.
-//const video = require('../cheerio/video'); 
 
 const axios = require('axios');
 const cheerio = require('cheerio');

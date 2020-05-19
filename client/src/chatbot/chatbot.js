@@ -43,12 +43,9 @@ function Chatbot() {
                 const response = await Axios.post('/api/crawling/textQuery', textQueryVariables)
                 console.log("res",response)
 
-                for(let content of response.data){
+                for (let content of response.data) {
                     console.log(content)
                 }
-
-
-
                 
             } else {
                 //I will send request to the textQuery ROUTE 
@@ -159,10 +156,6 @@ function Chatbot() {
                 </List.Item>
             </div>
         }
-
-
-
-
 
 
         // template for card message 
