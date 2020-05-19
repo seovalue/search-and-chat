@@ -40,19 +40,27 @@ function Chatbot() {
         }
         try {
             if(inputString[0] === '@'){
-                await Axios.post('/api/crawling/textQuery', textQueryVariables)
+                const response = await Axios.post('/api/crawling/textQuery', textQueryVariables)
+                console.log("res",response)
+
+                for(let content of response.data){
+                    console.log(content)
+                }
+
+
+
                 
             } else {
                 //I will send request to the textQuery ROUTE 
                 const response = await Axios.post('/api/dialogflow/textQuery', textQueryVariables)
-
+                
                 for (let content of response.data.fulfillmentMessages) {
-
+                    
                     conversation = {
                         who: '소통이',
                         content: content
                     }
-
+                    console.log("conversation: ",conversation)
                     dispatch(saveMessage(conversation))
                 }
             }

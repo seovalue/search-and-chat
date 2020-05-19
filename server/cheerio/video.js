@@ -11,7 +11,7 @@ const cheerio = require('cheerio');
     }
 */
 
-function video(name){
+module.exports = function video(name){
     console.log("My favorite singer",name)
     var url = 'https://tv.naver.com/search/clip?query=' //naverTV의 링크
     var sort = '&sort=date'
@@ -43,11 +43,9 @@ function video(name){
         })
 
         var data = videoList.filter(n => n.title);
-        data = data.slice(0,3)
+        data = JSON.stringify(data.slice(0,3))
         
         return data;
     })
     //.then(res=>console.log(res));
 }
-
-module.exports = video;
