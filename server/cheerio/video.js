@@ -2,7 +2,13 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 /*
-한글 utf-8 인코딩해서 searchquery에 저장해야함.
+이런 식으로 전달해야함. card 컴포넌트에
+    {
+      "description": "Youtube",
+      "image": "",
+      "link": "https://www.youtube.com",
+      "stack": "minjeong"
+    }
 */
 
 function video(name){
@@ -29,16 +35,19 @@ function video(name){
 
         $bodyList.each(function(i, elem){
             videoList[i] = {
-                thumbnail : $(this).find('a.cds_thm').children('img').attr('src'), 
+                description : "naverTV",
+                image : $(this).find('a.cds_thm').children('img').attr('src'), 
                 title : $(this).find('a.cds_thm').attr('title'),
                 link : "https://tv.naver.com/" + $(this).find('a.cds_thm').attr('href')
             }
         })
 
-        const data = videoList.filter(n => n.title);
+        var data = videoList.filter(n => n.title);
+        data = data.slice(0,3)
+        
         return data;
     })
-    .then(res=>console.log(res));
+    //.then(res=>console.log(res));
 }
 
 module.exports = video;

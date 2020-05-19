@@ -41,6 +41,7 @@ function Chatbot() {
         try {
             if(inputString[0] === '@'){
                 await Axios.post('/api/crawling/textQuery', textQueryVariables)
+                
             } else {
                 //I will send request to the textQuery ROUTE 
                 const response = await Axios.post('/api/dialogflow/textQuery', textQueryVariables)
@@ -78,8 +79,6 @@ function Chatbot() {
         const eventQueryVariables = {
             event
         }
-
-
 
         try {
             //I will send request to the textQuery ROUTE 
