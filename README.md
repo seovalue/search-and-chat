@@ -2,7 +2,7 @@
 ## CHATBOT WITH CRAWLING
 
 front
-- [x] Modify card component 
+- [ ] Modify card component 
 - [ ] Remove card message on dialogflow
 - [ ] Modify Intent on dialogflow
 - [ ] Add additional functions on dialogflow

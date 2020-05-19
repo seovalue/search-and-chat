@@ -44,7 +44,11 @@ function Chatbot() {
                 console.log("res",response)
 
                 for (let content of response.data) {
-                    console.log(content)
+                    conversation = {
+                        who: '소통이',
+                        content : content
+                    }
+                    dispatch(saveMessage(conversation))
                 }
                 
             } else {
@@ -78,6 +82,7 @@ function Chatbot() {
     }
 
 
+    //eventQuery 삭제하기.
     const eventQuery = async (event) => {
 
         // We need to take care of the message Chatbot sent 
@@ -130,7 +135,7 @@ function Chatbot() {
     }
 
     const renderCards = (cards) => {
-        return cards.map((card,i) => <Card key={i} cardInfo={card.structValue} />)
+        return cards.map((card,i) => <Card key={i} cardInfo={card.content} />)
     }
 
 
@@ -142,7 +147,8 @@ function Chatbot() {
         // template for normal text 
         if (message.content && message.content.text && message.content.text.text) {
             return <Message key={i} who={message.who} text={message.content.text.text} />
-        } else if (message.content && message.content.payload.fields.card) {
+        } 
+        else if (message.content && message.content.description) {
 
             const AvatarSrc = message.who === '소통이' ? <Icon type="robot" /> : <Icon type="smile" />
 
@@ -151,7 +157,7 @@ function Chatbot() {
                     <List.Item.Meta
                         avatar={<Avatar icon={AvatarSrc} />}
                         title={message.who}
-                        description={renderCards(message.content.payload.fields.card.listValue.values)}
+                        description={renderCards(message.content)}
                     />
                 </List.Item>
             </div>
