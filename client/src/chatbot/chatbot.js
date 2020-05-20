@@ -41,15 +41,21 @@ function Chatbot() {
         try {
             if(inputString[0] === '@'){
                 const response = await Axios.post('/api/crawling/textQuery', textQueryVariables)
-                console.log("res",response)
 
-                for (let content of response.data) {
+                for(var i = 0; i < 3; i++){
                     conversation = {
-                        who: '소통이',
-                        content : content
+                        who : '소통이',
+                        content : response.data[i]
                     }
                     dispatch(saveMessage(conversation))
                 }
+                // for (let content of response.data) {
+                //     conversation = {
+                //         who: '소통이',
+                //         content : content
+                //     }
+                //     dispatch(saveMessage(conversation))
+                // }
                 
             } else {
                 //I will send request to the textQuery ROUTE 
@@ -81,8 +87,6 @@ function Chatbot() {
 
     }
 
-
-    //eventQuery 삭제하기.
     const eventQuery = async (event) => {
 
         // We need to take care of the message Chatbot sent 
@@ -94,7 +98,6 @@ function Chatbot() {
             //I will send request to the textQuery ROUTE 
             const response = await Axios.post('/api/dialogflow/eventQuery', eventQueryVariables)
             for (let content of response.data.fulfillmentMessages) {
-
                 let conversation = {
                     who: '소통이',
                     content: content
@@ -135,7 +138,12 @@ function Chatbot() {
     }
 
     const renderCards = (cards) => {
-        return cards.map((card,i) => <Card key={i} cardInfo={card.content} />)
+        let Cards = []; //넣을 배열
+        let pushCard = {};
+        pushCard["content"] = cards;
+        Cards.push(pushCard);
+        Cards.map((card,i) => console.log("card.content",card.content))
+        return Cards.map((card,i) => <Card key={i} cardInfo={card.content} />)
     }
 
 
@@ -151,7 +159,7 @@ function Chatbot() {
         else if (message.content && message.content.description) {
 
             const AvatarSrc = message.who === '소통이' ? <Icon type="robot" /> : <Icon type="smile" />
-
+            console.log("message content",message.content)
             return <div>
                 <List.Item style={{ padding: '1rem' }}>
                     <List.Item.Meta
