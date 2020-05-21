@@ -21,7 +21,7 @@ function Chatbot() {
 
         //  First  Need to  take care of the message I sent     
         let conversation = {
-            who: 'user',
+            who: '사용자',
             content: {
                 text: {
                     text: text
@@ -41,21 +41,18 @@ function Chatbot() {
         try {
             if(inputString[0] === '@'){
                 const response = await Axios.post('/api/crawling/textQuery', textQueryVariables)
-
+                let conversations = {}
+                let pushConversations = []
                 for(var i = 0; i < 3; i++){
                     conversation = {
                         who : '소통이',
                         content : response.data[i]
                     }
-                    dispatch(saveMessage(conversation))
+                    pushConversations.push(conversation)
                 }
-                // for (let content of response.data) {
-                //     conversation = {
-                //         who: '소통이',
-                //         content : content
-                //     }
-                //     dispatch(saveMessage(conversation))
-                // }
+                conversations["card"] = pushConversations
+                console.log("conversations",conversations)
+                dispatch(saveMessage(conversations))
                 
             } else {
                 //I will send request to the textQuery ROUTE 
@@ -138,17 +135,14 @@ function Chatbot() {
     }
 
     const renderCards = (cards) => {
-        let Cards = []; //넣을 배열
-        let pushCard = {};
-        pushCard["content"] = cards;
-        Cards.push(pushCard);
-        Cards.map((card,i) => console.log("card.content",card.content))
-        return Cards.map((card,i) => <Card key={i} cardInfo={card.content} />)
+        cards.map((card,i) => console.log("card.content",card.content))
+        return cards.map((card,i) => <Card key={i} cardInfo={card.content} />)
     }
 
 
     const renderOneMessage = (message, i) => {
         console.log('message', message)
+        console.log('message.card',message.card)
 
         // we need to give some condition here to separate message kinds 
 
@@ -156,7 +150,7 @@ function Chatbot() {
         if (message.content && message.content.text && message.content.text.text) {
             return <Message key={i} who={message.who} text={message.content.text.text} />
         } 
-        else if (message.content && message.content.description) {
+        else if (message.card) {
 
             const AvatarSrc = message.who === '소통이' ? <Icon type="robot" /> : <Icon type="smile" />
             console.log("message content",message.content)
@@ -165,7 +159,7 @@ function Chatbot() {
                     <List.Item.Meta
                         avatar={<Avatar icon={AvatarSrc} />}
                         title={message.who}
-                        description={renderCards(message.content)}
+                        description={renderCards(message.card)}
                     />
                 </List.Item>
             </div>
