@@ -5,6 +5,8 @@ import { saveMessage } from '../_actions/message_actions';
 import Message from './Sections/Message';
 import { List, Icon, Avatar } from 'antd';
 import Card from "./Sections/Card";
+var username = prompt('이름을 알려주세요!');
+if(username === null) username = "유저"
 function Chatbot() {
     const dispatch = useDispatch();
     const messagesFromRedux = useSelector(state => state.message.messages)
@@ -21,7 +23,7 @@ function Chatbot() {
 
         //  First  Need to  take care of the message I sent     
         let conversation = {
-            who: '사용자',
+            who: username,
             content: {
                 text: {
                     text: text

@@ -3,11 +3,12 @@ import { Card, Icon } from 'antd';
 
 const { Meta } = Card;
 
+
 function CardComponent(props) {
     console.log("props" ,props)
     return (
         <Card
-            style={{ width: 300 }}
+            style={{ width: 200 }}
             cover={
                 <img
                     alt={props.cardInfo.description}
