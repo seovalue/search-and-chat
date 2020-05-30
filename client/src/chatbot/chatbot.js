@@ -5,8 +5,9 @@ import { saveMessage } from '../_actions/message_actions';
 import Message from './Sections/Message';
 import { List, Icon, Avatar } from 'antd';
 import Card from "./Sections/Card";
-var username = prompt('이름을 알려주세요!');
-if(username === null) username = "유저"
+import CheckString from './Check';
+const username = "유저";
+
 function Chatbot() {
     const dispatch = useDispatch();
     const messagesFromRedux = useSelector(state => state.message.messages)
@@ -42,6 +43,29 @@ function Chatbot() {
         }
         try {
             if(inputString[0] === '@'){
+                inputString = CheckString(inputString);
+                if(inputString === '최신'){
+
+                }
+                else if(inputString === '인기'){
+
+                }
+                else if(inputString === '다운'){
+
+                }
+                else {
+                    conversation = {
+                        who: '소통이',
+                        content: {
+                            text: {
+                                text: "잘못된 입력입니다. 다시 입력해주세요!"
+                            }
+                        }
+                    }
+        
+                    dispatch(saveMessage(conversation))
+                }
+
                 const response = await Axios.post('/api/crawling/textQuery', textQueryVariables)
                 let conversations = {}
                 let pushConversations = []
@@ -189,10 +213,10 @@ function Chatbot() {
 
     return (
         <div style={{
-            height: 620, width: 700,
+            height: 650, width: 700,
             border: '3px solid black', borderRadius: '7px'
         }}>
-            <div style={{ height: 564, width: '100%', overflow: 'auto' }}>
+            <div style={{ height: 594, width: '100%', overflow: 'auto' }}>
 
 
                 {renderMessage(messagesFromRedux)}

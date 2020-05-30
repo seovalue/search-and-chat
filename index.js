@@ -10,6 +10,9 @@ app.use(bodyParser.json());
 
 app.use('/api/crawling', require('./server/routes/crawling'));
 app.use('/api/dialogflow', require('./server/routes/dialogflow'));
+app.use('/api/latest',require('./server/routes/latest'));
+app.use('/api/popular',require('./server/routes/popular'));
+app.use('/api/download',require('./server/routes/download'));
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
