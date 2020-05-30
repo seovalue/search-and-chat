@@ -24,7 +24,7 @@ router.post('/textQuery', async(req,res)=>{
     console.log("url is ",url)
     const getHtml = async() => {
         try{
-            return await axios.get(url); //axios.get 함수를 이용해서 비동기로 네이버티비의 해당 가수의 최신 영상 html 파일을 가져온다. 
+            return await axios.get(url); //axios.get 함수를 이용해서 비동기로 네이버티비의 해당 가수의 이름과 정확도가 높은  html 파일을 가져온다. 
         } catch(error){
             console.log("error! check your code");
         }

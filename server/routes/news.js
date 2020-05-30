@@ -9,16 +9,20 @@ const cheerio = require('cheerio');
 
 router.post('/textQuery', async(req,res)=>{
     const result = req.body.text;
-    var name = result.substring(1)
+    var i = 0;
+    for(i; i < result.length; i++){
+        if(result[i] === '_') break;
+    }
+    var name = result.substr(1,i-1);
 
-    var url = 'https://tv.naver.com/search/clip?query=' //naverTV의 링크
-    var sort = '&sort=date'
-    url = url + name + sort
+    var url = 'https://search.naver.com/search.naver?query=' //naverTV의 링크
+    var where = '&where=news'
+    url = url + name + where
     url = encodeURI(url)
     console.log("url is ",url)
     const getHtml = async() => {
         try{
-            return await axios.get(url); //axios.get 함수를 이용해서 비동기로 네이버티비의 해당 가수의 최신 영상 html 파일을 가져온다. 
+            return await axios.get(url); //axios.get 함수를 이용해서 비동기로 네이버 뉴스 중 해당 가수의 이름이 들어간 최신 뉴스 html 파일을 가져온다. 
         } catch(error){
             console.log("error! check your code");
         }
@@ -26,20 +30,21 @@ router.post('/textQuery', async(req,res)=>{
 
     getHtml()
     .then(html => {
-        let videoList = [];
+        let newsList = [];
         const $ = cheerio.load(html.data);
-        const $bodyList = $("div.src_wrap div.thl ").children("div.thl_a");
+        const $bodyList = $("div.news").children("ul.type01").children("li");
+
 
         $bodyList.each(function(i, elem){
-            videoList[i] = {
-                description : "naverTV",
-                image : $(this).find('a.cds_thm').children('img').attr('src'), 
-                title : $(this).find('a.cds_thm').attr('title'),
-                link : "https://tv.naver.com/" + $(this).find('a.cds_thm').attr('href')
+            newsList[i] = {
+                description : "네이버 검색 기사",
+                title :  $(this).find('a._sp_each_title').attr('title'),
+                link : $(this).find('a._sp_each_title').attr('href'),
+                image : $(this).find('a.sp_thmb').children('img').attr('src')
             }
         })
 
-        data = videoList.filter(n => n.title);
+        data = newsList.filter(n => n.title);
         data = JSON.stringify(data.slice(0,3))
         
         res.send(data);

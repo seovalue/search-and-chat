@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@font-face { 
+  font-family: 'KyoboHand'; 
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/KyoboHand.woff') format('woff'); 
+  font-weight: normal; 
+  font-style: normal; 
+}
+
 * {
   word-break: keep-all;
   overflow-wrap: break-word;
@@ -8,26 +14,30 @@
 html,
 body {
   max-height: 800px;
+  font-family: 'KyoboHand';
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: Nanum Gothic,Lato, Helvetica Neue, Arial, Helvetica, sans-serif;
+  font-family: 'KyoboHand','Nanum Gothic',Lato, Helvetica Neue, Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 .ant-list-item-meta-content {
   max-width: 500px;
   overflow-x: scroll;
+  font-family: 'KyoboHand';
 }
 
 .ant-list-item-meta-title {
   font-size: 20px !important;
+  font-family: 'KyoboHand';
 }
 
 .ant-list-item-meta-description {
   display: flex;
   color: black !important;
+  font-family: 'KyoboHand';
 }
 

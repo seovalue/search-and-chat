@@ -15,7 +15,7 @@ function Chatbot() {
     useEffect(() => {
 
         eventQuery('001_Welcome')
-        eventQuery('002_Intro')
+        .then(eventQuery('002_Intro'))
 
     }, [])
 
@@ -54,6 +54,7 @@ function Chatbot() {
                     response = await Axios.post('/api/related/textQuery', textQueryVariables)
                 }
                 else if(inputString === '소식'){ //@가수명_소식
+                    console.log("뉴스들어옴")
                     response = await Axios.post('/api/news/textQuery', textQueryVariables)
                 }
 
@@ -182,12 +183,6 @@ function Chatbot() {
             </div>
         }
 
-
-        // template for card message 
-
-
-
-
     }
 
     const renderMessage = (returnedMessages) => {
@@ -207,7 +202,7 @@ function Chatbot() {
             height: 650, width: 700,
             border: '3px solid black', borderRadius: '7px'
         }}>
-            <div style={{ height: 594, width: '100%', overflow: 'auto' }}>
+            <div style={{ height: 594, width: '100%', overflow: 'auto'}}>
 
 
                 {renderMessage(messagesFromRedux)}
@@ -217,7 +212,7 @@ function Chatbot() {
             <input
                 style={{
                     margin: 0, width: '100%', height: 50,
-                    borderRadius: '4px', padding: '5px', fontSize: '1rem'
+                    borderRadius: '4px', padding: '5px', fontSize: '1rem', fontFamily: 'KyoboHand'
                 }}
                 placeholder="Send a message..."
                 onKeyPress={keyPressHanlder}
