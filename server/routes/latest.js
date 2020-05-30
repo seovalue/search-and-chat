@@ -5,11 +5,15 @@ const uuid = require('uuid'); //uuid 제대로 이해하고 다시 작성하기.
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-//@가수명 으로 입력이 들어왔을 때, 가수명만 받아서 
+//@가수명_최신 으로 입력이 들어왔을 때, 가수명만 받아서 
 
 router.post('/textQuery', async(req,res)=>{
     const result = req.body.text;
-    var name = result.substring(1)
+    var i = 0;
+    for(i; i < result.length; i++){
+        if(result[i] === '_') break;
+    }
+    var name = result.substr(1,i-1);
 
     var url = 'https://tv.naver.com/search/clip?query=' //naverTV의 링크
     var sort = '&sort=date'

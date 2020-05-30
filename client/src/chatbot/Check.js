@@ -3,7 +3,7 @@ function CheckString(inputString){
     var len = 0;
     for(var i = 0; i < inputString.length; i++){
         if(inputString[i] === '_'){
-            from = i;
+            from = i+1;
             break;
         }
     }

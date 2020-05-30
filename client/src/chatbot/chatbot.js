@@ -43,30 +43,21 @@ function Chatbot() {
         }
         try {
             if(inputString[0] === '@'){
+                console.log("첫번째 i", inputString);
                 inputString = CheckString(inputString);
-                if(inputString === '최신'){
-
+                console.log("두번째 i",inputString);
+                let response;
+                if(inputString === '최신'){ //@가수명_최신
+                    response = await Axios.post('/api/latest/textQuery', textQueryVariables)
                 }
-                else if(inputString === '인기'){
-
+                else if(inputString === '정확도'){ //@가수명_정확도
+                    response = await Axios.post('/api/related/textQuery', textQueryVariables)
                 }
-                else if(inputString === '다운'){
-
-                }
-                else {
-                    conversation = {
-                        who: '소통이',
-                        content: {
-                            text: {
-                                text: "잘못된 입력입니다. 다시 입력해주세요!"
-                            }
-                        }
-                    }
-        
-                    dispatch(saveMessage(conversation))
+                else if(inputString === '소식'){ //@가수명_소식
+                    response = await Axios.post('/api/news/textQuery', textQueryVariables)
                 }
 
-                const response = await Axios.post('/api/crawling/textQuery', textQueryVariables)
+                // const response = await Axios.post('/api/crawling/textQuery', textQueryVariables)
                 let conversations = {}
                 let pushConversations = []
                 for(var i = 0; i < 3; i++){
@@ -100,7 +91,7 @@ function Chatbot() {
                 who: '소통이',
                 content: {
                     text: {
-                        text: " Error just occured, please check the problem"
+                        text: "잘못된 입력입니다. 다시 입력해주세요!"
                     }
                 }
             }
