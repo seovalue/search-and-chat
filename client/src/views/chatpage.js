@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Typography, Icon } from 'antd';
-import Chatbot from './Chatbot/Chatbot';
-
-
+import Chatbot from '../Chatbot/Chatbot';
+import { withRouter } from "react-router-dom";
 const { Title } = Typography;
 
-function App() {
+
+function chatpage() {
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
@@ -18,4 +18,4 @@ function App() {
   )
 }
 
-export default App;
+export default withRouter(chatpage);
