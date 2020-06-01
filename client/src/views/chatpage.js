@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Typography, Icon } from 'antd';
 import Chatbot from '../Chatbot/Chatbot';
 import { withRouter } from "react-router-dom";

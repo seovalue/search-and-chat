@@ -1,20 +1,23 @@
-import React from "react";
-import { Typography, Icon } from 'antd';
-import Chatbot from './Chatbot/Chatbot';
+import React, {Suspense} from "react";
+import { Route, Switch } from "react-router-dom";
+// import { Typography, Icon } from 'antd';
+// import Chatbot from './Chatbot/Chatbot';
+import chatpage from './views/chatpage';
+import loginpage from './views/loginpage';
+import registerpage from './views/registerpage';
 
 
-const { Title } = Typography;
+//const { Title } = Typography;
 
 function App() {
   return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
-        <Title level={2} >CHATBOT&nbsp;<Icon type="robot" /></Title>
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Chatbot />
-      </div>
-    </div>
+    <Suspense fallback = {(<div>Loading...</div>)}>
+      <Switch>
+          <Route exact path="/" component={chatpage}/>
+          <Route exact path="/login" component={loginpage} />
+          <Route exact path="/register" component={registerpage} />
+        </Switch>
+    </Suspense>
   )
 }
 
