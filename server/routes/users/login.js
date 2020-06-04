@@ -8,12 +8,15 @@ var user = {
     keyword: "오마이걸"
 }
 
-router.post('/users/login', async(req,res)=>{
-    const userEmail = req.body.email;
-    const userPW = req.body.pw;
-    const data = "";
-    if(userEmail === user.email && ueserPW === user.pw){
+router.post('/userInfo', async(req,res)=>{
+    let userEmail = req.body.email;
+    console.log(userEmail);
+    let userPW = req.body.pw;
+    console.log(userPW);
+    let data = "";
+    if(userEmail === user.email && userPW === user.pw){
         data = user.keyword;
+        console.log(data);
     }
     res.send(data);
 })

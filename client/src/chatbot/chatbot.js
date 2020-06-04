@@ -8,6 +8,21 @@ import Card from "./Sections/Card";
 import CheckString from './Check';
 const username = "유저";
 
+function getKeyword(){
+    let url = window.location.href;
+    let keyword = "";
+    if(!url) return keyword;
+    for(var i = 0; i <= url.length; i++){
+        if(url[i] === '='){
+            keyword = url.substr(i+1);
+            keyword = decodeURI(keyword);
+            return keyword;
+        }
+    }
+}
+
+let userKeyword = getKeyword();
+
 function Chatbot() {
     const dispatch = useDispatch();
     const messagesFromRedux = useSelector(state => state.message.messages)

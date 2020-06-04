@@ -8,7 +8,7 @@ const config = require("./server/config/keys");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use('/users/login',require('./server/routes/users/login'));
+app.use('/api/login',require('./server/routes/users/login'));
 app.use('/api/dialogflow', require('./server/routes/dialogflow'));
 app.use('/api/latest',require('./server/routes/latest'));
 app.use('/api/related',require('./server/routes/related'));

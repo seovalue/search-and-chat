@@ -4,23 +4,27 @@ import { withRouter } from "react-router-dom";
 import Axios from 'axios';
 
 const { Title } = Typography;
-const email = document.getElementById('email');
-const pw = document.getElementById('password');
 
-async function login() {
+console.log("start");
 
-  var LoginForm = document.loginForm;
+const userInfo = async (info) => {
+  const email = document.getElementById('email').value;
+  const pw = document.getElementById('password').value;
   if(email && pw){
-    const info = {
+    const userVariables = {
       email,
       pw
     }
 
-    const response = await Axios.post('/users/login', info)
-    if(response){
-      LoginForm.action = `/chat?${response}`;
-      LoginForm.loginForm.submit();
+    const response = await Axios.post('/api/login/userInfo', userVariables);
+    if(response.data === "오마이걸"){
+      // loginForm.action = `/chat?${response.data}`;
+      // loginForm.submit();
+      window.location.href=`/chat?keyword=${response.data}`;
     }
+  }
+  else{
+    alert("nothing");
   }
 }
 
@@ -54,7 +58,7 @@ function loginpage() {
 
             <Form.Item>
               <div>
-                <Button type="primary" htmlType="submit" className="login-form-button" style={{ minWidth: '100%' }} onClick={login}>
+                <Button type="primary"  className="login-form-button" style={{ minWidth: '100%' }} onClick={userInfo}>
                   Log in
                 </Button>
               </div>
@@ -65,7 +69,7 @@ function loginpage() {
     </div>
   );
   // return (
-    
+  //  htmlType="submit"
 
 
 
