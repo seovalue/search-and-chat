@@ -17,14 +17,16 @@ const userInfo = async (info) => {
     }
 
     const response = await Axios.post('/api/login/userInfo', userVariables);
-    if(response.data === "오마이걸"){
+    if(response.data){
       // loginForm.action = `/chat?${response.data}`;
       // loginForm.submit();
       window.location.href=`/chat?keyword=${response.data}`;
+    } else{
+      alert("입력하신 정보와 일치하는 회원이 존재하지 않습니다 😥");
     }
   }
   else{
-    alert("nothing");
+    alert("이메일과 패스워드를 입력해주세요!");
   }
 }
 
