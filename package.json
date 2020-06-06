@@ -4,14 +4,14 @@
   "description": "chatbot-app",
   "main": "index.js",
   "engines": {
-    "node": "10.15.0",
-    "npm": "6.9.0"
+    "node": "10.x.x",
+    "npm": "6.13.4"
   },
   "scripts": {
     "start": "node index.js",
+    "dev": "concurrently \"npm run backend\"  \"npm run start --prefix client\"",
     "backend": "nodemon index.js",
-    "frontend": "npm run front --prefix client",
-    "dev": "concurrently \"npm run backend\"  \"npm run start --prefix client\""
+    "frontend": "npm run front --prefix client"
   },
   "author": "Jaewon Ahn",
   "contributors": [
@@ -19,6 +19,7 @@
   ],
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/bigquery": "^4.7.0",
     "actions-on-google": "^2.12.0",
     "axios": "^0.19.2",
     "body-parser": "^1.18.3",
