@@ -17,10 +17,12 @@ const userInfo = async (info) => {
     }
 
     const response = await Axios.post('/api/login/userInfo', userVariables);
-    if(response.data){
+    if(response.data != 'FAIL'){
       // loginForm.action = `/chat?${response.data}`;
       // loginForm.submit();
-      window.location.href=`/chat?keyword=${response.data}`;
+      var keyword = response.data.keyword;
+      var name = response.data.name;
+      window.location.href=`/chat?keyword=${keyword}&name=${name}`;
     } else{
       alert("입력하신 정보와 일치하는 회원이 존재하지 않습니다 😥");
     }

@@ -20,6 +20,10 @@ router.post('/userInfo', async(req,res)=>{
     };
 
     result = getUser(simpleUserInfo);
+    if(typeof(result) === 'undefined'){
+        result = 'FAIL'
+    }
+    console.log("RESULT",result)
     res.send(result);
 })
 

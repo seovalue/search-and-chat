@@ -4,7 +4,8 @@
   "private": true,
   "engines": {
     "node": "10.x.x",
-    "npm": "6.13.4"
+    "npm": "6.x",
+    "yarn" : ">=1.0.0 <2.0.0"
   },
   "dependencies": {
     "antd": "^3.26.5",

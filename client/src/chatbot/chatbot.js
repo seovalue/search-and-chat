@@ -6,24 +6,54 @@ import Message from './Sections/Message';
 import { List, Icon, Avatar } from 'antd';
 import Card from "./Sections/Card";
 import CheckString from './Check';
-const username = "유저";
 
-function getKeyword(){
+function getUserInfo(){
     let url = window.location.href;
     let keyword = "";
+    let name = "";
+    let from = 0;
+    let to = 0;
+    let flag = false;
     if(!url) return keyword;
     for(var i = 0; i <= url.length; i++){
+        if(flag && url[i] === '&'){
+            to = i;
+            break;
+        }
         if(url[i] === '='){
-            keyword = url.substr(i+1);
-            keyword = decodeURI(keyword);
-            return keyword;
+            from = i+1;
+            flag = true;
         }
     }
+
+    keyword = url.substr(from,to-from);
+    keyword = decodeURI(keyword);
+    name = url.substr(to+6);
+    name = decodeURI(name);
+
+    var user = {
+        keyword,
+        name
+    };
+
+    return user;
 }
 
-let userKeyword = getKeyword();
+const user = getUserInfo();
+let username = "유저";
+let userKeyword = "";
+
+if(user.keyword){
+    userKeyword = user.keyword;
+    username = user.name;
+}
+
 
 function Chatbot() {
+    console.log("이름",username);
+    console.log("키워드",userKeyword);
+    var isUser = false;
+    if(userKeyword) isUser = true;
     const dispatch = useDispatch();
     const messagesFromRedux = useSelector(state => state.message.messages)
 
@@ -31,12 +61,11 @@ function Chatbot() {
 
         eventQuery('001_Welcome')
         .then(eventQuery('002_Intro'))
+        
 
     }, [])
 
-
     const textQuery = async (text) => {
-
         //  First  Need to  take care of the message I sent     
         let conversation = {
             who: username,
@@ -116,7 +145,7 @@ function Chatbot() {
         }
 
     }
-
+    
     const eventQuery = async (event) => {
 
         // We need to take care of the message Chatbot sent 

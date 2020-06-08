@@ -24,10 +24,13 @@ function addUser(userInfo){
 function getUser(simpleUserInfo){
     let userEmail = simpleUserInfo.email;
     let userPw = simpleUserInfo.pw;
-    let result = "";
+    let result;
     for(var i = 0; i < users.length; i++){
         if(userEmail === users[i].email && userPw === users[i].pw){
-            result = users[i].keyword;
+            result = {
+                "name":users[i].name,
+                "keyword":users[i].keyword
+            }
         }
     }
 
