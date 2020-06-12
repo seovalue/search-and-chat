@@ -4,11 +4,12 @@ README referred to [Github](https://github.com/othneildrew/Best-README-Template)
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <h3 align="center">SEARCH AND CHAT</h3>
+  <h1 align="center">SEARCH AND CHAT</h1>
+
 
   <p align="center">
     웹 페이지로 구현된 챗봇과 대화 및 '@'를 이용하여 최신 영상, 정확도 높은 영상, 소식을 카드로 제공합니다.
-  "http://khuhub.khu.ac.kr/2017103084/oss-chatbot"
+
   <a href="http://khuhub.khu.ac.kr/2017103084/oss-chatbot/">View Demo</a>
   ·
   <a href="http://khuhub.khu.ac.kr/2017103084/oss-chatbot/issues">Report Bug</a>
@@ -39,7 +40,7 @@ README referred to [Github](https://github.com/othneildrew/Best-README-Template)
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot](./projectScreenShot.PNG)
+[Product Name Screen Shot](./projectScreenShot.PNG)
 
 카카오톡, 라인 등에서 제공하는 챗봇 어플리케이션과 같이 웹에서도 작동할 수 있는 챗봇을 만들어, 웹 사용자들과 대화할 수 있는 봇을 만들고 싶어 이 프로젝트를 진행하게 되었습니다. 간단한 대화와 더불어 좋아하는 가수, 또는 배우 등의 이름과 함께 검색어를 입력하면 봇이 대신 정보를 가져와주는 편의성을 더하였습니다.
 
@@ -71,13 +72,17 @@ README referred to [Github](https://github.com/othneildrew/Best-README-Template)
 ```sh
 git clone http://khuhub.khu.ac.kr/2017103084/oss-chatbot/
 ```
+
 2. root 폴더와 client 폴더에서 아래 명령을 실행합니다.
 ```sh
 npm install
 ```
+
 3. [Google Developers](https://console.developers.google.com/project)에서 프로젝트를 생성한 뒤, API 키를 발급 받습니다. 이 때, 프로젝트 명(ID)과 API 키의 json 파일이 필요합니다.
 
+
 4. [Dialogflow](https://dialogflow.cloud.google.com/)에서 에이전트를 생성합니다. 이 때, GOOGLE PROJECT 탭의 Project ID는 앞서 (3)에서 생성한 프로젝트의 ID를 선택합니다.
+
 
 5. root 폴더에 .env 파일을 생성한 뒤, 아래 내용을 채워 넣습니다.
 ```
@@ -100,6 +105,7 @@ npm run dev
 
 해당 프로젝트의 실제 동작 화면은 [SEARCH-AND-CHAT](https://search-and-chat.herokuapp.com/)에서 확인하실 수 있습니다.
 React 의 특성 상 뒤로가기 및 Reload 시 오류가 발생할 수 있습니다. 이 때는 아래 URL로 재접속하시면 원활히 사용하실 수 있습니다. 또한 heroku 로 빌드되어 사용이 없는 경우에는 첫 접속 시 로딩 시간이 걸릴 수 있습니다. 조금만 기다려주시면 프로젝트가 실행될 것입니다 😊
+
 
 * URL : <https://search-and-chat.herokuapp.com/>
 
