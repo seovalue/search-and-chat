@@ -6,69 +6,36 @@ import Message from './Sections/Message';
 import { List, Icon, Avatar } from 'antd';
 import Card from "./Sections/Card";
 import CheckString from './Check';
+import { text } from 'body-parser';
 
-function getUserInfo(){
-    let url = window.location.href;
-    let keyword = "";
-    let name = "";
-    let from = 0;
-    let to = 0;
-    let flag = false;
-    if(!url) return keyword;
-    for(var i = 0; i <= url.length; i++){
-        if(flag && url[i] === '&'){
-            to = i;
-            break;
-        }
-        if(url[i] === '='){
-            from = i+1;
-            flag = true;
-        }
-    }
-
-    keyword = url.substr(from,to-from);
-    keyword = decodeURI(keyword);
-    name = url.substr(to+6);
-    name = decodeURI(name);
-
-    var user = {
-        keyword,
-        name
-    };
-
-    return user;
-}
-
-const user = getUserInfo();
-let username = "유저";
 let userKeyword = "";
-
-if(user.keyword){
-    userKeyword = user.keyword;
-    username = user.name;
-}
+let userName = "유저";
+let autoSearch = 0;
+if(sessionStorage.length){
+    userKeyword = sessionStorage.getItem("Now_userKeyword");
+    userName = sessionStorage.getItem("Now_userName");
+    autoSearch = 1;
+    sessionStorage.clear();
+} 
 
 
 function Chatbot() {
-    console.log("이름",username);
+    console.log("이름",userName);
     console.log("키워드",userKeyword);
-    var isUser = false;
-    if(userKeyword) isUser = true;
+
     const dispatch = useDispatch();
     const messagesFromRedux = useSelector(state => state.message.messages)
 
     useEffect(() => {
-
         eventQuery('001_Welcome')
         .then(eventQuery('002_Intro'))
-        
 
     }, [])
 
     const textQuery = async (text) => {
         //  First  Need to  take care of the message I sent     
         let conversation = {
-            who: username,
+            who: userName,
             content: {
                 text: {
                     text: text
@@ -180,6 +147,21 @@ function Chatbot() {
 
     }
 
+    if(autoSearch === 1){
+        setTimeout(function(){
+            eventQuery('008_AutoSearch');
+        }, 500);
+        
+        setTimeout(function(){
+            textQuery(`@${userKeyword}_최신`);
+            textQuery(`@${userKeyword}_정확도`);
+            textQuery(`@${userKeyword}_소식`);
+        }, 1000);
+
+        autoSearch = 0;
+        console.log("I am in autoSearch!!");
+    }
+    
 
     const keyPressHanlder = (e) => {
         if (e.key === "Enter") {
@@ -243,10 +225,10 @@ function Chatbot() {
 
     return (
         <div style={{
-            height: 650, width: 700,
+            height: 610, width: 700,
             border: '3px solid black', borderRadius: '7px'
         }}>
-            <div style={{ height: 594, width: '100%', overflow: 'auto'}}>
+            <div style={{ height: 554, width: '100%', overflow: 'auto'}}>
 
 
                 {renderMessage(messagesFromRedux)}

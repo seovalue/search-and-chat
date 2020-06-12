@@ -3,11 +3,12 @@ const router = express.Router();
 const structjson = require('./structjson.js');
 const dialogflow = require('dialogflow');
 
-const config = require('../config/keys');
+require('dotenv').config();
 
-const projectId = config.googleProjectID
-const sessionId = config.dialogFlowSessionID
-const languageCode = config.dialogFlowSessionLanguageCode
+const projectId = process.env.googleProjectID
+const sessionId = process.env.dialogFlowSessionID
+const languageCode = process.env.dialogFlowSessionLanguageCode
+
 
 
 // Create a new session

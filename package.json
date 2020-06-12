@@ -13,10 +13,7 @@
     "backend": "nodemon index.js",
     "frontend": "npm run front --prefix client"
   },
-  "author": "Jaewon Ahn",
-  "contributors": [
-    "Minjeong Seo"
-  ],
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "actions-on-google": "^2.12.0",

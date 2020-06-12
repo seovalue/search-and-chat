@@ -10,7 +10,6 @@ yarn-error.log*
 
 .vscode
 
-dev.js
-auth.js
-./server/config/dev.js
-./server/config/auth.js
+
+
+.env

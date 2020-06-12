@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, Form, Input, Icon, Button} from 'antd';
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import Axios from 'axios';
 
 const { Title } = Typography;
@@ -17,12 +17,17 @@ const userInfo = async (info) => {
     }
 
     const response = await Axios.post('/api/login/userInfo', userVariables);
-    if(response.data != 'FAIL'){
+    if(response.data !== 'FAIL'){
       // loginForm.action = `/chat?${response.data}`;
       // loginForm.submit();
       var keyword = response.data.keyword;
       var name = response.data.name;
-      window.location.href=`/chat?keyword=${keyword}&name=${name}`;
+
+      sessionStorage.setItem("Now_userKeyword", keyword);
+      sessionStorage.setItem("Now_userName", name);
+      window.history.replaceState('login','','/chat');
+      window.history.go();
+      // window.location.href = "/chat"; 
     } else{
       alert("입력하신 정보와 일치하는 회원이 존재하지 않습니다 😥");
     }
@@ -66,25 +71,12 @@ function loginpage() {
                   Log in
                 </Button>
               </div>
-              <a href="/register">가입하기</a> Or <a href = "/chat"> 비회원으로 사용하기 </a>
+              <Link to ="/register">가입하기</Link> Or <Link to = "/chat">비회원으로 사용하기</Link> 
             </Form.Item>
           </form>
       </div>
     </div>
   );
-  // return (
-  //  htmlType="submit"
-
-
-
-
-
-  //   <div>
-  //     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
-  //       <Title level={2} >Login Page</Title>
-  //     </div>
-  //   </div>
-  // )
 }
 
 export default withRouter(loginpage);

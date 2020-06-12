@@ -1,5 +1,5 @@
 import React, {Suspense} from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, BrowserRouter} from "react-router-dom";
 // import { Typography, Icon } from 'antd';
 // import Chatbot from './Chatbot/Chatbot';
 import chatpage from './views/chatpage';
@@ -11,13 +11,15 @@ import registerpage from './views/registerpage';
 
 function App() {
   return (
-    <Suspense fallback = {(<div>Loading...</div>)}>
-      <Switch>
-          <Route exact path="/chat" component={chatpage}/>
-          <Route exact path="/" component={loginpage} />
-          <Route exact path="/register" component={registerpage} />
+    <BrowserRouter>
+      <Suspense fallback = {(<div>Loading...</div>)}>
+        <Switch>
+          <Route path="/chat" component={chatpage}/>
+          <Route path="/" exact component={loginpage} />
+          <Route path="/register" component={registerpage} />
         </Switch>
-    </Suspense>
+      </Suspense>
+    </BrowserRouter>
   )
 }
 
