@@ -8,18 +8,13 @@ import Card from "./Sections/Card";
 import CheckString from './Check';
 import { text } from 'body-parser';
 
-let userKeyword = "";
-let userName = "유저";
-let autoSearch = 0;
-if(sessionStorage.length){
-    userKeyword = sessionStorage.getItem("Now_userKeyword");
-    userName = sessionStorage.getItem("Now_userName");
-    autoSearch = 1;
-    sessionStorage.clear();
-} 
-
-
-function Chatbot() {
+function Chatbot(props) {
+    
+    console.log("실행")
+    var userName = props.userName;
+    var userKeyword = props.userKeyword;
+    var autoSearch = props.autoSearch;
+    
     console.log("이름",userName);
     console.log("키워드",userKeyword);
 
@@ -31,6 +26,22 @@ function Chatbot() {
         .then(eventQuery('002_Intro'))
 
     }, [])
+
+    if(autoSearch){
+        useEffect(() => {
+            console.log("I am in autoSearch!!");
+            setTimeout(function(){
+                eventQuery('008_AutoSearch');
+            }, 500);
+
+            setTimeout(function(){
+                textQuery(`@${userKeyword}_최신`);
+                textQuery(`@${userKeyword}_정확도`);
+                textQuery(`@${userKeyword}_소식`);
+            }, 1000);
+
+        }, [])
+    }
 
     const textQuery = async (text) => {
         //  First  Need to  take care of the message I sent     
@@ -147,20 +158,14 @@ function Chatbot() {
 
     }
 
-    if(autoSearch === 1){
-        setTimeout(function(){
-            eventQuery('008_AutoSearch');
-        }, 500);
+    // if(autoSearch === 1){
         
-        setTimeout(function(){
-            textQuery(`@${userKeyword}_최신`);
-            textQuery(`@${userKeyword}_정확도`);
-            textQuery(`@${userKeyword}_소식`);
-        }, 1000);
+        
+        
 
-        autoSearch = 0;
-        console.log("I am in autoSearch!!");
-    }
+    //     autoSearch = 0;
+    //     console.log("I am in autoSearch!!");
+    // }
     
 
     const keyPressHanlder = (e) => {
