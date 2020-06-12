@@ -39,7 +39,7 @@ README referred to [Github](https://github.com/othneildrew/Best-README-Template)
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[Product Name Screen Shot](./projectScreenShot.PNG)
+[Project Main Page Screen Shot](./projectScreenShot.PNG)
 
 카카오톡, 라인 등에서 제공하는 챗봇 어플리케이션과 같이 웹에서도 작동할 수 있는 챗봇을 만들어, 웹 사용자들과 대화할 수 있는 봇을 만들고 싶어 이 프로젝트를 진행하게 되었습니다. 간단한 대화와 더불어 좋아하는 가수, 또는 배우 등의 이름과 함께 검색어를 입력하면 봇이 대신 정보를 가져와주는 편의성을 더하였습니다.
 
