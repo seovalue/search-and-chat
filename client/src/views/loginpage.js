@@ -45,11 +45,13 @@ async function userInfo(){
 
 
 function loginpage() {
-
   return (
     <div>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem', paddingTop: '10rem' }}>
-          <Title level={2}>Login Page</Title>
+          <Title level={2}>SEARCH-AND-CHAT MAIN PAGE</Title>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center'}}>
+          사용방법은&nbsp;<Link to ="/usage">HOW TO USE</Link>&nbsp;에서 확인하실 수 있습니다.
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem'}}>
           <form style={{ width: '350px' }} name = "loginForm">
@@ -79,10 +81,10 @@ function loginpage() {
                   </Button>
                 </Link>
               </div>
-              <Link to ="/register">가입하기</Link> Or <Link to = "/chat">비회원으로 사용하기</Link> 
+              <Link to ="/register">가입하기</Link> Or <Link to = "/chat">비회원으로 사용하기</Link>
             </Form.Item>
           </form>
-      </div>
+        </div>
     </div>
   );
 }

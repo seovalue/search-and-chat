@@ -19,6 +19,11 @@ function chatpage() {
     autoSearch = 1;
   }
 
+  window.history.pushState(null, null, "/chat");
+    window.onpopstate = function(event){
+        window.history.go(1)
+  };
+
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>

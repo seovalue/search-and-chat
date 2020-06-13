@@ -5,6 +5,7 @@ import { Route, Switch, BrowserRouter} from "react-router-dom";
 import chatpage from './views/chatpage';
 import loginpage from './views/loginpage';
 import registerpage from './views/registerpage';
+import howtouse from './views/howtouse';
 
 
 //const { Title } = Typography;
@@ -17,6 +18,7 @@ function App() {
           <Route path="/chat" component={chatpage}/>
           <Route path="/" exact component={loginpage} />
           <Route path="/register" component={registerpage} />
+          <Route path="/usage" component={howtouse} />
         </Switch>
       </Suspense>
     </BrowserRouter>

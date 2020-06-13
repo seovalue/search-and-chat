@@ -8,8 +8,10 @@ import Card from "./Sections/Card";
 import CheckString from './Check';
 import { text } from 'body-parser';
 
+
+
 function Chatbot(props) {
-    
+
     console.log("실행")
     var userName = props.userName;
     var userKeyword = props.userKeyword;
