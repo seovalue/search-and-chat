@@ -28,11 +28,9 @@ README referred to [Github](https://github.com/othneildrew/Best-README-Template)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
-* [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
 
 
 
@@ -103,8 +101,9 @@ npm run dev
 ## Usage
 
 해당 프로젝트의 실제 동작 화면은 [SEARCH-AND-CHAT](https://search-and-chat.herokuapp.com/)에서 확인하실 수 있습니다.  
-React 의 특성 상 뒤로가기 및 Reload 시 오류가 발생할 수 있습니다. 이 때는 아래 URL로 재접속하시면 원활히 사용하실 수 있습니다. 또한 heroku 로 빌드되어 사용이 없는 경우에는 첫 접속 시 로딩 시간이 걸릴 수 있습니다. 조금만 기다려주시면 프로젝트가 실행될 것입니다 😊  
+React 의 특성 상 뒤로가기 및 Reload 시 오류가 발생할 수 있으므로 뒤로가기를 막아두었습니다. 메인 페이지로 재 접속을 원하실 때에는 아래 URL로 재접속하시면 원활히 사용하실 수 있습니다. 회원으로 로그인 시, Link 컴포넌트를 이용하여 링크를 동적으로 변경시키다보니 여러번 눌러야 접속될 수 있습니다. 또한 heroku 로 빌드되어 사용이 없는 경우에는 첫 접속 시 로딩 시간이 걸릴 수 있습니다. 조금만 기다려주시면 프로젝트가 실행될 것입니다 😊  
 
+URL로 페이지에 접속하신 뒤, HOW-TO-USE를 통해서도 사용 방법을 확인하실 수 있도록 구성하였습니다.
 
 * URL : <https://search-and-chat.herokuapp.com/>
 
