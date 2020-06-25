@@ -120,6 +120,12 @@ URL로 페이지에 접속하신 뒤, HOW-TO-USE를 통해서도 사용 방법�
 5. Open a Pull Request
 
 <!-- CONTACT -->
+## License
+MIT License
+Copyright(c) [Minjeong Seo]
+
+
+<!-- CONTACT -->
 ## Contact
 
 프로젝트에 문제가 있거나 궁금하신 사항은 아래 메일로 연락주세요.
