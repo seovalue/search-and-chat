@@ -1,5 +1,9 @@
 README referred to [Github](https://github.com/othneildrew/Best-README-Template)
 
+이 프로젝트는 heroku로 빌드되었습니다. 장시간 접속이 없는 경우, 첫 접속 시 서버를 실행시키는 데에 15~20초 정도 소요될 수 있습니다. 로딩이 걸리더라도, 조금 기다리시면 접속 가능하답니다!! (서버는 매일 열려있습니다 :-)) 또한 접속 후, HOW TO USE를 통해 이용방법을 꼭! 확인해주세요. 감사합니다.
+
+
+[SEARCH-AND-CHAT 바로가기](https://search-and-chat.herokuapp.com/)
 
 <!-- PROJECT LOGO -->
 <br />
